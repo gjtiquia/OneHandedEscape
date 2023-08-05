@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        // TODO : Move to GameManager / GameInit
+        Application.targetFrameRate = 120;
+
         _rigidbody = GetComponent<Rigidbody2D>();
         _originalGravityScale = _rigidbody.gravityScale;
     }
