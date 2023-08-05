@@ -15,6 +15,11 @@ public class Player : MonoBehaviour
     [Header("Fall Settings")]
     [SerializeField] private float _fallGravityMultiplier;
 
+    [Header("OnGround OverlapBox")]
+    [SerializeField] private Vector2 _onGroundOverlapBoxPointOffset;
+    [SerializeField] private Vector2 _onGroundOverlapBoxSize;
+    [SerializeField] private LayerMask _onGroundOverlapLayerMask;
+
     private Rigidbody2D _rigidbody;
     private float _originalGravityScale;
     private int _moveInput = 0;
@@ -43,8 +48,7 @@ public class Player : MonoBehaviour
             _moveInput = 0;
         }
 
-        // TODO : Refactor with IsOnGround in FixedUpdate
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             _hasJumpInput = true;
         }
@@ -61,11 +65,11 @@ public class Player : MonoBehaviour
         _rigidbody.AddForce(force * Vector2.right);
 
         // Jump
-        if (_hasJumpInput)
+        if (_hasJumpInput && IsOnGround())
         {
             _rigidbody.AddForce(_jumpForce * Vector2.up, ForceMode2D.Impulse);
-            _hasJumpInput = false;
         }
+        _hasJumpInput = false;
 
         // Fall Gravity Multiplier
         if (_rigidbody.velocity.y < 0)
@@ -76,5 +80,21 @@ public class Player : MonoBehaviour
         {
             _rigidbody.gravityScale = _originalGravityScale;
         }
+    }
+
+    private bool IsOnGround()
+    {
+        Collider2D collider = Physics2D.OverlapBox((Vector2)transform.position + _onGroundOverlapBoxPointOffset, _onGroundOverlapBoxSize, angle: 0, _onGroundOverlapLayerMask);
+
+        bool isOnGround = collider;
+        Debug.Log(isOnGround);
+        Debug.Log(collider != null);
+        return isOnGround;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position + (Vector3)_onGroundOverlapBoxPointOffset, _onGroundOverlapBoxSize);
     }
 }
