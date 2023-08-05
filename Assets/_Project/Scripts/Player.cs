@@ -31,27 +31,33 @@ public class Player : MonoBehaviour
         _originalGravityScale = _rigidbody.gravityScale;
     }
 
+    public void MoveRight()
+    {
+        _moveInput = 1;
+    }
+
+    public void MoveLeft()
+    {
+        _moveInput = -1;
+    }
+
+    public void TryJump()
+    {
+        _hasJumpInput = true;
+    }
+
     private void Update()
     {
         // TODO : Refactor with Command Pattern and a Queue (Probably first filter the commands, like multiple left/right/jump condense, then use the commands)
 
         if (Input.GetKey(KeyCode.D))
-        {
-            _moveInput = 1;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            _moveInput = -1;
-        }
-        else
-        {
-            _moveInput = 0;
-        }
+            MoveRight();
+
+        if (Input.GetKey(KeyCode.A))
+            MoveLeft();
 
         if (Input.GetKey(KeyCode.Space))
-        {
-            _hasJumpInput = true;
-        }
+            TryJump();
     }
 
     private void FixedUpdate()
@@ -69,7 +75,6 @@ public class Player : MonoBehaviour
         {
             _rigidbody.AddForce(_jumpForce * Vector2.up, ForceMode2D.Impulse);
         }
-        _hasJumpInput = false;
 
         // Fall Gravity Multiplier
         if (_rigidbody.velocity.y < 0)
@@ -80,6 +85,12 @@ public class Player : MonoBehaviour
         {
             _rigidbody.gravityScale = _originalGravityScale;
         }
+
+        // TODO : Terminal Velocity
+
+        // Reset Inputs
+        _hasJumpInput = false;
+        _moveInput = 0;
     }
 
     private bool IsOnGround()
