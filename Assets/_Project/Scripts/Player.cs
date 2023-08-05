@@ -65,8 +65,8 @@ public class Player : MonoBehaviour
         // Run
         float targetSpeed = _moveInput * _moveSpeed;
         float speedDiff = targetSpeed - _rigidbody.velocity.x;
-        float acceleration = Mathf.Abs(targetSpeed) > 0.01f ? _acceleration : _decceleration;
-        float force = speedDiff * acceleration;
+        float acceleration = IsCloseToZero(targetSpeed) ? _acceleration : _decceleration;
+        float force = speedDiff * acceleration * Time.fixedDeltaTime;
 
         _rigidbody.AddForce(force * Vector2.right);
 
@@ -96,13 +96,17 @@ public class Player : MonoBehaviour
     private bool IsOnGround()
     {
         Collider2D collider = Physics2D.OverlapBox((Vector2)transform.position + _onGroundOverlapBoxPointOffset, _onGroundOverlapBoxSize, angle: 0, _onGroundOverlapLayerMask);
+        bool isOnGround = collider && IsCloseToZero(_rigidbody.velocity.y);
 
-        bool isOnGround = collider;
-        Debug.Log(isOnGround);
-        Debug.Log(collider != null);
         return isOnGround;
     }
 
+    private bool IsCloseToZero(float number)
+    {
+        return Mathf.Abs(number) <= 0.01f;
+    }
+
+    // Gizmos
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
