@@ -4,21 +4,21 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 // Reference: https://forum.unity.com/threads/how-do-i-detect-when-a-button-is-being-pressed-held-on-eventtype.352368/
-public class InputButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+public class InputButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public UnityEvent OnButtonPress;
+    public UnityEvent OnButtonRelease;
 
-    private bool isPointerPressedDown;
     private bool _isPointerInside;
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void PressButton()
     {
-        isPointerPressedDown = true;
+        OnButtonPress?.Invoke();
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void ReleaseButton()
     {
-        isPointerPressedDown = false;
+        OnButtonRelease?.Invoke();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -29,13 +29,14 @@ public class InputButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         _isPointerInside = false;
+        ReleaseButton(); // Call once when pointer exits
     }
 
     private void Update()
     {
-        if (/*isPointerPressedDown && */_isPointerInside)
+        if (_isPointerInside)
         {
-            OnButtonPress?.Invoke();
+            PressButton(); // Call on every frame that the pointer is inside
         }
     }
 }

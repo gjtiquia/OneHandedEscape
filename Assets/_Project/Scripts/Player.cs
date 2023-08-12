@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
         // Run
         float targetSpeed = _moveInput * _moveSpeed;
         float speedDiff = targetSpeed - _rigidbody.velocity.x;
-        float acceleration = IsCloseToZero(targetSpeed) ? _acceleration : _decceleration;
+        float acceleration = IsCloseToZero(targetSpeed) ? _decceleration : _acceleration;
         float force = speedDiff * acceleration * Time.fixedDeltaTime;
 
         _rigidbody.AddForce(force * Vector2.right);
