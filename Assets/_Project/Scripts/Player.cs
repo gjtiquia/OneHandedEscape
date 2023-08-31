@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
             MoveLeft();
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
             TryJump();
     }
 

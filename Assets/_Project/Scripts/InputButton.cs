@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class InputButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public UnityEvent OnButtonPress;
+    public UnityEvent OnButtonPressDown;
     public UnityEvent OnButtonRelease;
 
     private bool _isPointerInside;
@@ -14,6 +15,11 @@ public class InputButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void PressButton()
     {
         OnButtonPress?.Invoke();
+    }
+
+    public void PressDownButton()
+    {
+        OnButtonPressDown?.Invoke();
     }
 
     public void ReleaseButton()
@@ -24,6 +30,7 @@ public class InputButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         _isPointerInside = true;
+        PressDownButton();
     }
 
     public void OnPointerExit(PointerEventData eventData)
