@@ -5,12 +5,22 @@ namespace Project
 {
     public class InputListener : MonoBehaviour
     {
-        public static event Action OnInputPolledEvent;
+        public static event Action<bool> OnJumpInputChanged;
 
-        public static bool IsJumpPressed => _isJumpPressed;
-        private static bool _isJumpPressed;
+        private static bool _isJumpPressed
+        {
+            get => m_isJumpPressed;
+            set
+            {
+                m_isJumpPressed = value;
+                OnJumpInputChanged?.Invoke(m_isJumpPressed);
+            }
+        }
+        private static bool m_isJumpPressed;
 
         private static InputListener _instance;
+
+        [SerializeField] private InputButton _jumpUIButton;
 
         private void Awake()
         {
@@ -26,15 +36,22 @@ namespace Project
 
         private void Update()
         {
-            if (Input.GetKey(KeyCode.Space))
-                _isJumpPressed = true;
-
-            OnInputPolledEvent?.Invoke();
+            _isJumpPressed = HasJumpInput();
         }
 
-        private void LateUpdate()
+        private bool HasJumpInput()
         {
-            _isJumpPressed = false;
+            return HasKeyboardJumpInput() || HasUIJumpInput();
+        }
+
+        private bool HasKeyboardJumpInput()
+        {
+            return Input.GetKey(KeyCode.Space);
+        }
+
+        private bool HasUIJumpInput()
+        {
+            return _jumpUIButton.IsPressed();
         }
     }
 }

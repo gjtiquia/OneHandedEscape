@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f012ffeb579688341bb72c645901190b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _jumpUIButton: {fileID: 1771611081}
 --- !u!1 &112966179
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,9 +800,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnButtonPress:
     m_PersistentCalls:
+      m_Calls: []
+  OnButtonPressDown:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 494806920}
-        m_TargetAssemblyTypeName: UIImageToggle, Assembly-CSharp
+        m_TargetAssemblyTypeName: UIImageToggle, Scripts
         m_MethodName: SetActiveImage
         m_Mode: 1
         m_Arguments:
@@ -812,9 +816,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnButtonPressDown:
-    m_PersistentCalls:
-      m_Calls: []
   OnButtonRelease:
     m_PersistentCalls:
       m_Calls:
@@ -1134,6 +1135,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2071701790}
         m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: PressButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1771611081}
+        m_TargetAssemblyTypeName: InputButton, Scripts
         m_MethodName: PressButton
         m_Mode: 1
         m_Arguments:
@@ -1975,6 +1988,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1450995304}
         m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: PressButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1771611081}
+        m_TargetAssemblyTypeName: InputButton, Scripts
         m_MethodName: PressButton
         m_Mode: 1
         m_Arguments:
@@ -3383,10 +3408,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnButtonPress:
     m_PersistentCalls:
+      m_Calls: []
+  OnButtonPressDown:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1771611084}
-        m_TargetAssemblyTypeName: UIImageToggle, Assembly-CSharp
-        m_MethodName: SetActiveImage
+      - m_Target: {fileID: 997287106}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: TryJump
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3396,12 +3424,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnButtonPressDown:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 997287106}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: TryJump
+      - m_Target: {fileID: 1771611084}
+        m_TargetAssemblyTypeName: UIImageToggle, Scripts
+        m_MethodName: SetActiveImage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -18,7 +18,7 @@ namespace Project
         private IOnGroundChecker _onGroundChecker;
 
         private PlayerMovementState _state;
-        private bool _isJumpReleased;
+        private bool _isJumpPressed;
 
         public void Awake()
         {
@@ -29,7 +29,7 @@ namespace Project
             UnityAssert.IsNotNull(_onGroundChecker);
 
             _state = PlayerMovementState.Idle;
-            _isJumpReleased = true;
+            _isJumpPressed = false;
         }
 
         public void Update()
@@ -51,9 +51,9 @@ namespace Project
         public void PressJump()
         {
             if (_state != PlayerMovementState.Idle) return;
-            if (!_isJumpReleased) return;
+            if (_isJumpPressed) return;
 
-            _isJumpReleased = false;
+            _isJumpPressed = true;
             _state = PlayerMovementState.JumpingUp;
 
             // TODO : Can refactor to do this OnEnterState
@@ -62,7 +62,7 @@ namespace Project
 
         public void ReleaseJump()
         {
-            _isJumpReleased = true;
+            _isJumpPressed = false;
 
             if (_state == PlayerMovementState.JumpingUp)
                 _rigidbody.AddForce(Vector2.down * _rigidbody.velocity.y * (1 - _properties.JumpCutMultiplier), ForceMode2D.Impulse);

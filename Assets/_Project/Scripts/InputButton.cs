@@ -10,7 +10,7 @@ public class InputButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public UnityEvent OnButtonPressDown;
     public UnityEvent OnButtonRelease;
 
-    private bool _isPointerInside;
+    private bool _isPressed;
 
     public void PressButton()
     {
@@ -19,29 +19,34 @@ public class InputButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void PressDownButton()
     {
+        _isPressed = true;
         OnButtonPressDown?.Invoke();
     }
 
     public void ReleaseButton()
     {
+        _isPressed = false;
         OnButtonRelease?.Invoke();
+    }
+
+    public bool IsPressed()
+    {
+        return _isPressed;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _isPointerInside = true;
         PressDownButton();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _isPointerInside = false;
         ReleaseButton(); // Call once when pointer exits
     }
 
     private void Update()
     {
-        if (_isPointerInside)
+        if (_isPressed)
         {
             PressButton(); // Call on every frame that the pointer is inside
         }
