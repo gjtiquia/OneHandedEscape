@@ -9,7 +9,9 @@ namespace Project
     public class PlayerMovement : MonoBehaviour
     {
         public PlayerMovementProperties Properties => _properties;
+        public Rigidbody2D Rigidbody => _rigidbody;
         public Vector2 Velocity => _rigidbody.velocity;
+        public MovementStateFactory StateFactory => _movementStateFactory;
 
         // TODO : Refactor with PlayerMovementPropertiesSO
         [SerializeField] private PlayerMovementProperties _properties;
@@ -17,10 +19,28 @@ namespace Project
         private Rigidbody2D _rigidbody;
         private IOnGroundChecker _onGroundChecker;
 
-        private PlayerMovementState _state;
-        private bool _isJumpPressed;
+        private PlayerInput _fixedUpdateInput;
+        private MovementStateFactory _movementStateFactory;
+        private MovementState _jumpState;
 
-        public void Awake()
+        // MonoBehaviour INTERFACE
+        private void Awake()
+        {
+            Initialize();
+        }
+
+        private void Update()
+        {
+            OnUpdate(Time.deltaTime);
+        }
+
+        private void FixedUpdate()
+        {
+            OnFixedUpdate(Time.fixedDeltaTime);
+        }
+
+        // PUBLIC METHODS
+        public void Initialize()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _onGroundChecker = GetComponent<IOnGroundChecker>();
@@ -28,19 +48,30 @@ namespace Project
             UnityAssert.IsNotNull(_rigidbody);
             UnityAssert.IsNotNull(_onGroundChecker);
 
-            _state = PlayerMovementState.Idle;
-            _isJumpPressed = false;
+            _fixedUpdateInput = new PlayerInput();
+            _movementStateFactory = new MovementStateFactory(this);
+
+            _jumpState = _movementStateFactory.GroundedState;
+            _jumpState.OnEnter();
         }
 
-        public void Update()
+        public void OnUpdate(float deltaTime)
         {
-            // TODO : Each state should implement Update and switch state on its own
 
-            if (_state == PlayerMovementState.JumpingUp && _rigidbody.velocity.y <= 0)
-                _state = PlayerMovementState.FallingDown;
+        }
 
-            if (_onGroundChecker.IsOnGround() && IsCloseToZero(_rigidbody.velocity.y))
-                _state = PlayerMovementState.Idle;
+        public void OnFixedUpdate(float fixedDeltaTime)
+        {
+            MovementState currentJumpState = _jumpState;
+            MovementState newJumpState = currentJumpState.OnFixedUpdate(_fixedUpdateInput, fixedDeltaTime);
+            if (newJumpState != currentJumpState)
+            {
+                currentJumpState.OnExit();
+                newJumpState.OnEnter();
+                _jumpState = newJumpState;
+            }
+
+            _fixedUpdateInput.Clear();
         }
 
         public void SetProperties(PlayerMovementProperties properties)
@@ -48,30 +79,26 @@ namespace Project
             _properties = properties;
         }
 
+        public bool IsOnGround()
+        {
+            return _onGroundChecker.IsOnGround();
+        }
+
         public void PressJump()
         {
-            if (_state != PlayerMovementState.Idle) return;
-            if (_isJumpPressed) return;
+            _fixedUpdateInput.IsJumpPressed = true;
+        }
 
-            _isJumpPressed = true;
-            _state = PlayerMovementState.JumpingUp;
-
-            // TODO : Can refactor to do this OnEnterState
-            _rigidbody.AddForce(Vector2.up * _properties.JumpForce, ForceMode2D.Impulse);
+        public void PressRight()
+        {
+            // TODO : This should be called in OnFixedUpdate
+            // TODO : Check target speed
+            _rigidbody.AddForce(Vector2.right, ForceMode2D.Impulse);
         }
 
         public void ReleaseJump()
         {
-            _isJumpPressed = false;
-
-            if (_state == PlayerMovementState.JumpingUp)
-                _rigidbody.AddForce(Vector2.down * _rigidbody.velocity.y * (1 - _properties.JumpCutMultiplier), ForceMode2D.Impulse);
-        }
-
-        // TODO : Refactor into MathUtilities
-        private bool IsCloseToZero(float number)
-        {
-            return Mathf.Abs(number) <= 0.01f;
+            _fixedUpdateInput.IsJumpReleased = true;
         }
     }
 

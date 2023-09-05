@@ -9,11 +9,19 @@ namespace Project.Tests
 {
     public class PlayerMovementTests
     {
-        private PlayerMovement _playerMovement;
-        private PlayerMovementProperties _movementProperties;
+        protected const float DELTA_TIME = 1f / 150f;
+        protected const float FIXED_DELTA_TIME = 1f / 50f;
 
-        private Rigidbody2D _rigidbody;
-        private MockOnGroundChecker _mockOnGroundChecker;
+        protected PlayerMovement _playerMovement;
+        protected PlayerMovementProperties _movementProperties;
+
+        protected Rigidbody2D _rigidbody;
+        protected MockOnGroundChecker _mockOnGroundChecker;
+
+        public void RunFixedUpdate()
+        {
+            _playerMovement.OnFixedUpdate(FIXED_DELTA_TIME);
+        }
 
         [SetUp]
         public void SetupBeforeEveryTest()
@@ -28,60 +36,14 @@ namespace Project.Tests
             _movementProperties.JumpForce = 5f;
             _movementProperties.JumpCutMultiplier = 0.3f;
 
-            _playerMovement.Awake();
             _playerMovement.SetProperties(_movementProperties);
+            _playerMovement.Initialize();
         }
 
         [Test]
-        public void _00_DefaultNoVelocity()
+        public void ____DefaultNoVelocity()
         {
             Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void _01a_CanDoBasicJump()
-        {
-            _playerMovement.PressJump();
-            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0));
-        }
-
-        [Test]
-        public void _01b_CannotRepeatedlyJump()
-        {
-            _playerMovement.PressJump();
-            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0));
-
-            float initialJumpVelocity = _playerMovement.Velocity.y;
-
-            _playerMovement.PressJump();
-            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(initialJumpVelocity));
-        }
-
-        [Test]
-        public void _02a_ReleaseJumpButtonWhileJumpingToJumpCut()
-        {
-            _playerMovement.PressJump();
-            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0));
-
-            float initialJumpVelocity = _playerMovement.Velocity.y;
-            _playerMovement.ReleaseJump();
-
-            float expectedYVelocity = initialJumpVelocity * _playerMovement.Properties.JumpCutMultiplier;
-            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(expectedYVelocity));
-        }
-
-        [Test]
-        public void _02b_DoesNotJumpCutIfVelocityIsLessThanZero()
-        {
-            _playerMovement.PressJump();
-            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0));
-
-            _rigidbody.velocity = Vector2.down; // Mock that the player is now falling
-            Assert.That(_playerMovement.Velocity.y, Is.LessThan(0));
-
-            _playerMovement.Update();
-            _playerMovement.ReleaseJump();
-            Assert.That(_playerMovement.Velocity, Is.EqualTo(Vector2.down)); // Expect no change
         }
     }
 
