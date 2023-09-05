@@ -40,6 +40,8 @@ namespace Project
         protected Rigidbody2D _rigidbody => _movement.Rigidbody;
         protected MovementStateFactory _stateFactory => _movement.StateFactory;
 
+        protected bool _debugLog = false;
+
         public MovementState(PlayerMovement movement)
         {
             _movement = movement;
@@ -69,6 +71,8 @@ namespace Project
 
         public override void OnEnter(PlayerInput input)
         {
+            if (_debugLog) Debug.Log("Enter GroundedState");
+
             InitializeState();
 
             if (input.IsJumpPressed)
@@ -101,6 +105,8 @@ namespace Project
 
         public override void OnEnter(PlayerInput input)
         {
+            if (_debugLog) Debug.Log("Enter JumpingUpState");
+
             _rigidbody.AddForce(Vector2.up * _properties.JumpForce, ForceMode2D.Impulse);
         }
 
@@ -111,7 +117,7 @@ namespace Project
 
         public override MovementState OnFixedUpdate(PlayerInput input, float fixedDeltaTime)
         {
-            if (_rigidbody.velocity.y < 0)
+            if (_rigidbody.velocity.y <= 0)
                 return _stateFactory.FallingDownState;
 
             if (input.IsJumpReleased)
@@ -130,7 +136,7 @@ namespace Project
 
         public override void OnEnter(PlayerInput input)
         {
-
+            if (_debugLog) Debug.Log("Enter FallingDownState");
         }
 
         public override void OnExit(PlayerInput input)

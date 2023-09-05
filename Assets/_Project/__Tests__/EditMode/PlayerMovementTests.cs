@@ -27,8 +27,12 @@ namespace Project.Tests
         public void SetupBeforeEveryTest()
         {
             GameObject player = new GameObject();
+
             _rigidbody = player.AddComponent<Rigidbody2D>();
+            _rigidbody.velocity = Vector2.zero;
+
             _mockOnGroundChecker = player.AddComponent<MockOnGroundChecker>();
+            _mockOnGroundChecker.SetIsOnGround(true);
 
             _playerMovement = player.AddComponent<PlayerMovement>();
 
@@ -49,11 +53,16 @@ namespace Project.Tests
 
     public class MockOnGroundChecker : MonoBehaviour, IOnGroundChecker
     {
-        public bool OnGround = false;
+        private bool _isOnGround;
 
         public bool IsOnGround()
         {
-            return OnGround;
+            return _isOnGround;
+        }
+
+        public void SetIsOnGround(bool isOnGround)
+        {
+            _isOnGround = isOnGround;
         }
     }
 }

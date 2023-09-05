@@ -60,5 +60,30 @@ namespace Project.Tests
             RunFixedUpdate();
             Assert.That(_playerMovement.Velocity, Is.EqualTo(Vector2.down)); // Expect no change
         }
+
+        [Test]
+        public void _04_DoesNotJumpAgainUntilReleaseJumpButton()
+        {
+            _playerMovement.PressJump();
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0));
+
+            // Mock that the player is on the ground
+            _rigidbody.velocity = Vector2.zero;
+            _mockOnGroundChecker.SetIsOnGround(true);
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0));
+
+            // Attempt to jump again (should not jump because not yet released)
+            _playerMovement.PressJump();
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0));
+
+            _playerMovement.ReleaseJump();
+            RunFixedUpdate();
+            _playerMovement.PressJump();
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0)); // Expect no change
+        }
     }
 }
