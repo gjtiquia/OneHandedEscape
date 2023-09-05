@@ -45,32 +45,48 @@ namespace Project
             _movement = movement;
         }
 
-        public abstract void OnEnter();
-        public abstract void OnExit();
+        public abstract void OnEnter(PlayerInput input);
+        public abstract void OnExit(PlayerInput input);
         public abstract MovementState OnFixedUpdate(PlayerInput input, float fixedDeltaTime);
     }
 
     public class GroundedState : MovementState
     {
+        /// <summary>
+        /// To prevent the player from constantly jumping when the jump button is held down.
+        /// </summary>
+        private bool _wasJumpReleasedFirst;
+
         public GroundedState(PlayerMovement movement) : base(movement)
         {
-
+            InitializeState();
         }
 
-        public override void OnEnter()
+        private void InitializeState()
         {
-
+            _wasJumpReleasedFirst = true;
         }
 
-        public override void OnExit()
+        public override void OnEnter(PlayerInput input)
+        {
+            InitializeState();
+
+            if (input.IsJumpPressed)
+                _wasJumpReleasedFirst = false;
+        }
+
+        public override void OnExit(PlayerInput input)
         {
 
         }
 
         public override MovementState OnFixedUpdate(PlayerInput input, float fixedDeltaTime)
         {
-            if (input.IsJumpPressed)
+            if (_wasJumpReleasedFirst && input.IsJumpPressed)
                 return _stateFactory.JumpingUpState;
+
+            if (input.IsJumpReleased)
+                _wasJumpReleasedFirst = true;
 
             return this;
         }
@@ -83,12 +99,12 @@ namespace Project
 
         }
 
-        public override void OnEnter()
+        public override void OnEnter(PlayerInput input)
         {
             _rigidbody.AddForce(Vector2.up * _properties.JumpForce, ForceMode2D.Impulse);
         }
 
-        public override void OnExit()
+        public override void OnExit(PlayerInput input)
         {
 
         }
@@ -112,12 +128,12 @@ namespace Project
 
         }
 
-        public override void OnEnter()
+        public override void OnEnter(PlayerInput input)
         {
 
         }
 
-        public override void OnExit()
+        public override void OnExit(PlayerInput input)
         {
 
         }

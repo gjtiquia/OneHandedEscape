@@ -52,7 +52,7 @@ namespace Project
             _movementStateFactory = new MovementStateFactory(this);
 
             _jumpState = _movementStateFactory.GroundedState;
-            _jumpState.OnEnter();
+            _jumpState.OnEnter(_fixedUpdateInput);
         }
 
         public void OnUpdate(float deltaTime)
@@ -66,8 +66,8 @@ namespace Project
             MovementState newJumpState = currentJumpState.OnFixedUpdate(_fixedUpdateInput, fixedDeltaTime);
             if (newJumpState != currentJumpState)
             {
-                currentJumpState.OnExit();
-                newJumpState.OnEnter();
+                currentJumpState.OnExit(_fixedUpdateInput);
+                newJumpState.OnEnter(_fixedUpdateInput);
                 _jumpState = newJumpState;
             }
 
@@ -100,13 +100,6 @@ namespace Project
         {
             _fixedUpdateInput.IsJumpReleased = true;
         }
-    }
-
-    public enum PlayerMovementState
-    {
-        Idle,
-        JumpingUp,
-        FallingDown
     }
 
     [System.Serializable]
