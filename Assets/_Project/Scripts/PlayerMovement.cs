@@ -27,6 +27,9 @@ namespace Project
         private void Awake()
         {
             Initialize();
+
+            // TODO : Move to GameManager / GameInit
+            Application.targetFrameRate = 120;
         }
 
         private void FixedUpdate()
