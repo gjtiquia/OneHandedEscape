@@ -6,6 +6,8 @@ namespace Project
     {
         public bool IsJumpPressed;
         public bool IsJumpReleased;
+        public bool IsRightPressed;
+        public bool IsLeftPressed;
 
         public PlayerInput()
         {
@@ -16,6 +18,8 @@ namespace Project
         {
             IsJumpPressed = false;
             IsJumpReleased = false;
+            IsRightPressed = false;
+            IsLeftPressed = false;
         }
     }
 
@@ -137,24 +141,23 @@ namespace Project
         public override void OnEnter(PlayerInput input)
         {
             if (_debugLog) Debug.Log("Enter FallingDownState");
+
+            // TODO : Increase Fall Gravity
         }
 
         public override void OnExit(PlayerInput input)
         {
-
+            // TODO : Decrease Fall Gravity
         }
 
         public override MovementState OnFixedUpdate(PlayerInput input, float fixedDeltaTime)
         {
-            if (_movement.IsOnGround() && IsCloseToZero(_rigidbody.velocity.y))
+            if (_movement.IsOnGround() && MathUtilities.IsCloseToZero(_rigidbody.velocity.y))
                 return _stateFactory.GroundedState;
 
             return this;
         }
 
-        private bool IsCloseToZero(float number)
-        {
-            return Mathf.Abs(number) <= 0.01f;
-        }
+
     }
 }

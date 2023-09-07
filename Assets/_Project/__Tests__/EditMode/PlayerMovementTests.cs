@@ -37,6 +37,11 @@ namespace Project.Tests
             _playerMovement = player.AddComponent<PlayerMovement>();
 
             _movementProperties = new PlayerMovementProperties();
+
+            _movementProperties.MoveSpeed = 10f;
+            _movementProperties.MoveAcceleration = 2f;
+            _movementProperties.MoveDecceleration = 2f;
+
             _movementProperties.JumpForce = 5f;
             _movementProperties.JumpCutMultiplier = 0.3f;
 

@@ -29,11 +29,6 @@ namespace Project
             Initialize();
         }
 
-        private void Update()
-        {
-            OnUpdate(Time.deltaTime);
-        }
-
         private void FixedUpdate()
         {
             OnFixedUpdate(Time.fixedDeltaTime);
@@ -55,21 +50,10 @@ namespace Project
             _jumpState.OnEnter(_fixedUpdateInput);
         }
 
-        public void OnUpdate(float deltaTime)
-        {
-
-        }
-
         public void OnFixedUpdate(float fixedDeltaTime)
         {
-            MovementState currentJumpState = _jumpState;
-            MovementState newJumpState = currentJumpState.OnFixedUpdate(_fixedUpdateInput, fixedDeltaTime);
-            if (newJumpState != currentJumpState)
-            {
-                currentJumpState.OnExit(_fixedUpdateInput);
-                newJumpState.OnEnter(_fixedUpdateInput);
-                _jumpState = newJumpState;
-            }
+            UpdateJumpState(fixedDeltaTime);
+            UpdateMovement(fixedDeltaTime);
 
             _fixedUpdateInput.Clear();
         }
@@ -89,22 +73,61 @@ namespace Project
             _fixedUpdateInput.IsJumpPressed = true;
         }
 
-        public void PressRight()
-        {
-            // TODO : This should be called in OnFixedUpdate
-            // TODO : Check target speed
-            _rigidbody.AddForce(Vector2.right, ForceMode2D.Impulse);
-        }
-
         public void ReleaseJump()
         {
             _fixedUpdateInput.IsJumpReleased = true;
+        }
+
+        public void PressRight()
+        {
+            _fixedUpdateInput.IsRightPressed = true;
+        }
+
+        public void PressLeft()
+        {
+            _fixedUpdateInput.IsLeftPressed = true;
+        }
+
+        // PRIVATE METHODS
+        private void UpdateJumpState(float fixedDeltaTime)
+        {
+            MovementState currentJumpState = _jumpState;
+            MovementState newJumpState = currentJumpState.OnFixedUpdate(_fixedUpdateInput, fixedDeltaTime);
+            if (newJumpState != currentJumpState)
+            {
+                currentJumpState.OnExit(_fixedUpdateInput);
+                newJumpState.OnEnter(_fixedUpdateInput);
+                _jumpState = newJumpState;
+            }
+        }
+
+        private void UpdateMovement(float fixedDeltaTime)
+        {
+            int moveInput = 0;
+
+            if (_fixedUpdateInput.IsRightPressed && !_fixedUpdateInput.IsLeftPressed)
+                moveInput = 1;
+            else if (!_fixedUpdateInput.IsRightPressed && _fixedUpdateInput.IsLeftPressed)
+                moveInput = -1;
+
+            float targetSpeed = moveInput * _properties.MoveSpeed;
+            float speedDiff = targetSpeed - _rigidbody.velocity.x;
+            float acceleration = MathUtilities.IsCloseToZero(targetSpeed) ? _properties.MoveDecceleration : _properties.MoveAcceleration;
+            float force = speedDiff * acceleration * fixedDeltaTime;
+
+            _rigidbody.AddForce(force * Vector2.right);
         }
     }
 
     [System.Serializable]
     public class PlayerMovementProperties
     {
+        [Header("Move Properties")]
+        public float MoveSpeed = 0f;
+        public float MoveAcceleration = 0f;
+        public float MoveDecceleration = 0f;
+
+        [Header("Jump Properties")]
         public float JumpForce = 0f;
         public float JumpCutMultiplier = 0f;
     }
@@ -112,5 +135,13 @@ namespace Project
     public interface IOnGroundChecker
     {
         public bool IsOnGround();
+    }
+
+    public static class MathUtilities
+    {
+        public static bool IsCloseToZero(float number)
+        {
+            return Mathf.Abs(number) <= 0.01f;
+        }
     }
 }

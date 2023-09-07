@@ -15,11 +15,13 @@ namespace Project
         private void OnEnable()
         {
             InputListener.OnJumpInputChanged += OnJumpInputChanged;
+            InputListener.OnInputPolled += OnInputPolled;
         }
 
         private void OnDisable()
         {
             InputListener.OnJumpInputChanged -= OnJumpInputChanged;
+            InputListener.OnInputPolled -= OnInputPolled;
         }
 
         private void OnJumpInputChanged(bool isJumpPressed)
@@ -28,6 +30,15 @@ namespace Project
                 _playerMovement.PressJump();
             else
                 _playerMovement.ReleaseJump();
+        }
+
+        private void OnInputPolled()
+        {
+            if (InputListener.IsRightPressed)
+                _playerMovement.PressRight();
+
+            if (InputListener.IsLeftPressed)
+                _playerMovement.PressLeft();
         }
     }
 }

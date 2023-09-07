@@ -232,6 +232,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _properties:
+    MoveSpeed: 15
+    MoveAcceleration: 310
+    MoveDecceleration: 800
     JumpForce: 35
     JumpCutMultiplier: 0.8
 --- !u!114 &42904020
@@ -296,6 +299,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpUIButton: {fileID: 1771611081}
+  _leftUIButton: {fileID: 2071701790}
+  _rightUIButton: {fileID: 1450995304}
+  _upLeftUIButton: {fileID: 586735404}
+  _upRightUIButton: {fileID: 1185731020}
 --- !u!1 &112966179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,7 +1233,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: -16, y: -13, z: -18, w: -22}
+  m_RaycastPadding: {x: -16, y: -16, z: -20, w: -22}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2079,7 +2086,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: -16, y: -13, z: -18, w: -22}
+  m_RaycastPadding: {x: -20, y: -16, z: -18, w: -22}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
