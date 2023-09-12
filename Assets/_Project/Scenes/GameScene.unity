@@ -135,10 +135,11 @@ GameObject:
   - component: {fileID: 42904017}
   - component: {fileID: 42904016}
   - component: {fileID: 42904019}
+  - component: {fileID: 42904021}
   - component: {fileID: 42904018}
   - component: {fileID: 42904020}
   m_Layer: 0
-  m_Name: TDDPlayer
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,7 +235,7 @@ MonoBehaviour:
   _properties:
     MoveSpeed: 15
     MoveAcceleration: 310
-    MoveDecceleration: 800
+    MoveDecceleration: 1500
     JumpForce: 35
     JumpCutMultiplier: 0.8
 --- !u!114 &42904020
@@ -254,6 +255,22 @@ MonoBehaviour:
   _onGroundOverlapLayerMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &42904021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42904013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066c94ca0425c40c6a22ce5b2b948c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _horizontalSpeedThreshold: 0.01
+  _playerMovement: {fileID: 42904019}
+  _animator: {fileID: 1010048961}
+  _displayTransform: {fileID: 1010048960}
 --- !u!1 &57557734
 GameObject:
   m_ObjectHideFlags: 0
