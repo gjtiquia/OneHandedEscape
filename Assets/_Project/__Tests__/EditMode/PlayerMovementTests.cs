@@ -23,6 +23,14 @@ namespace Project.Tests
             _playerMovement.OnFixedUpdate(FIXED_DELTA_TIME);
         }
 
+        public void RunFixedUpdate(int numberOfTicks)
+        {
+            for (int i = 0; i < numberOfTicks; i++)
+            {
+                RunFixedUpdate();
+            }
+        }
+
         [SetUp]
         public void SetupBeforeEveryTest()
         {
