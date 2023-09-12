@@ -90,7 +90,7 @@ namespace Project
 
         public override MovementState OnFixedUpdate(PlayerInput input, float fixedDeltaTime)
         {
-            if (_wasJumpReleasedFirst && input.IsJumpPressed)
+            if (_wasJumpReleasedFirst && input.IsJumpPressed && _movement.IsOnGround())
                 return _stateFactory.JumpingUpState;
 
             if (input.IsJumpReleased)

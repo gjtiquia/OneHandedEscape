@@ -85,5 +85,19 @@ namespace Project.Tests
             RunFixedUpdate();
             Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0)); // Expect no change
         }
+
+        // TODO : May refactor with Coyote time
+        [Test]
+        public void _05_DoesNotJumpIfNotOnGround()
+        {
+            // Mock that player is not on the ground
+            _mockOnGroundChecker.SetIsOnGround(false);
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0));
+
+            _playerMovement.PressJump();
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0)); // Expect no change
+        }
     }
 }
