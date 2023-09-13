@@ -133,6 +133,7 @@ namespace Project
         [Header("Jump Properties")]
         public float JumpForce = 0f;
         public float JumpCutMultiplier = 0f;
+        public float CoyoteTime = 0f;
     }
 
     public interface IOnGroundChecker

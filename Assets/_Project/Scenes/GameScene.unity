@@ -238,6 +238,7 @@ MonoBehaviour:
     MoveDecceleration: 1500
     JumpForce: 35
     JumpCutMultiplier: 0.8
+    CoyoteTime: 0.18
 --- !u!114 &42904020
 MonoBehaviour:
   m_ObjectHideFlags: 0

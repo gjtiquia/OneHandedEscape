@@ -62,6 +62,7 @@ namespace Project
         /// To prevent the player from constantly jumping when the jump button is held down.
         /// </summary>
         private bool _wasJumpReleasedFirst;
+        private float _elapsedTimeOffGround;
 
         public GroundedState(PlayerMovement movement) : base(movement)
         {
@@ -71,6 +72,7 @@ namespace Project
         private void InitializeState()
         {
             _wasJumpReleasedFirst = true;
+            _elapsedTimeOffGround = 0;
         }
 
         public override void OnEnter(PlayerInput input)
@@ -90,13 +92,28 @@ namespace Project
 
         public override MovementState OnFixedUpdate(PlayerInput input, float fixedDeltaTime)
         {
-            if (_wasJumpReleasedFirst && input.IsJumpPressed && _movement.IsOnGround())
+            CalculateElapsedTimeOffGround(fixedDeltaTime);
+
+            if (_wasJumpReleasedFirst && input.IsJumpPressed && IsWithinCoyoteTime())
                 return _stateFactory.JumpingUpState;
 
             if (input.IsJumpReleased)
                 _wasJumpReleasedFirst = true;
 
             return this;
+        }
+
+        private void CalculateElapsedTimeOffGround(float fixedDeltaTime)
+        {
+            if (_movement.IsOnGround())
+                _elapsedTimeOffGround = 0;
+            else
+                _elapsedTimeOffGround += fixedDeltaTime;
+        }
+
+        private bool IsWithinCoyoteTime()
+        {
+            return _elapsedTimeOffGround <= _properties.CoyoteTime;
         }
     }
 

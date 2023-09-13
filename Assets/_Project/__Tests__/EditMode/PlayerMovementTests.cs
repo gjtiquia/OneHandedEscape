@@ -53,6 +53,8 @@ namespace Project.Tests
             _movementProperties.JumpForce = 5f;
             _movementProperties.JumpCutMultiplier = 0.3f;
 
+            _movementProperties.CoyoteTime = 0.2f;
+
             _playerMovement.SetProperties(_movementProperties);
             _playerMovement.Initialize();
         }

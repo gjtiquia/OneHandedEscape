@@ -59,7 +59,7 @@ namespace Project
 
         private bool HasKeyboardJumpInput()
         {
-            return Input.GetKey(KeyCode.Space);
+            return Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
         }
 
         private bool HasUIJumpInput()
