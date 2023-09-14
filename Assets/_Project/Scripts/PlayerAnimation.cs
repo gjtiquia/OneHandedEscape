@@ -49,9 +49,11 @@ namespace Project
         {
             bool hasHorizontalSpeed = Mathf.Abs(_playerMovement.Velocity.x) > _horizontalSpeedThreshold;
             bool hasVerticalVelocity = Mathf.Abs(_playerMovement.Velocity.y) > 0;
+            bool isOnGround = _playerMovement.IsOnGround();
 
             _animator.SetBool("HasHorizontalSpeed", hasHorizontalSpeed);
             _animator.SetBool("HasVerticalVelocity", hasVerticalVelocity);
+            _animator.SetBool("IsOnGround", isOnGround);
         }
     }
 }
