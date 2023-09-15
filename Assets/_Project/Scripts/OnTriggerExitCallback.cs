@@ -4,11 +4,11 @@ using UnityEngine.Events;
 
 namespace Project
 {
-    public class OnTriggerEnterCallback : MonoBehaviour
+    public class OnTriggerExitCallback : MonoBehaviour
     {
         [SerializeField] private bool _isActive = true;
         [SerializeField] private List<string> _targetTags;
-        [SerializeField] private UnityEvent _onTriggerEnter2DEvent;
+        [SerializeField] private UnityEvent _onTriggerExit2DEvent;
 
         public void EnableCallback()
         {
@@ -20,10 +20,10 @@ namespace Project
             _isActive = false;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerExit2D(Collider2D other)
         {
             if (_isActive && _targetTags.Contains(other.tag))
-                _onTriggerEnter2DEvent?.Invoke();
+                _onTriggerExit2DEvent?.Invoke();
         }
     }
 }
