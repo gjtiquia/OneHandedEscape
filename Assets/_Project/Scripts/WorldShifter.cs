@@ -20,5 +20,19 @@ namespace Project
             currentPosition.x -= _shiftAmount;
             _shiftTransform.position = currentPosition;
         }
+
+        public void ShiftDown()
+        {
+            Vector3 currentPosition = _shiftTransform.position;
+            currentPosition.y += _shiftAmount;
+            _shiftTransform.position = currentPosition;
+        }
+
+        public void ShiftUp()
+        {
+            Vector3 currentPosition = _shiftTransform.position;
+            currentPosition.y -= _shiftAmount;
+            _shiftTransform.position = currentPosition;
+        }
     }
 }
