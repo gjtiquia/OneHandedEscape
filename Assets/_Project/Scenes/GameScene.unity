@@ -5848,7 +5848,6 @@ GameObject:
   - component: {fileID: 307496911}
   - component: {fileID: 307496912}
   - component: {fileID: 307496913}
-  - component: {fileID: 307496914}
   m_Layer: 0
   m_Name: LeftTrigger
   m_TagString: Untagged
@@ -5864,7 +5863,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307496910}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13, y: 0, z: 0}
+  m_LocalPosition: {x: -13.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5918,48 +5917,6 @@ MonoBehaviour:
       - m_Target: {fileID: 324751617}
         m_TargetAssemblyTypeName: Project.WorldShifter, Scripts
         m_MethodName: ShiftLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1206714412}
-        m_TargetAssemblyTypeName: Project.OnTriggerEnterCallback, Scripts
-        m_MethodName: DisableCallback
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &307496914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 307496910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dadfcb38affc85a49ad28fcf15aa6d7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isActive: 1
-  _targetTags:
-  - Player
-  _onTriggerExit2DEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 307496913}
-        m_TargetAssemblyTypeName: Project.OnTriggerEnterCallback, Scripts
-        m_MethodName: EnableCallback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7779,7 +7736,6 @@ GameObject:
   - component: {fileID: 1206714410}
   - component: {fileID: 1206714411}
   - component: {fileID: 1206714412}
-  - component: {fileID: 1206714413}
   m_Layer: 0
   m_Name: RightTrigger
   m_TagString: Untagged
@@ -7795,7 +7751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206714409}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: 0, z: 0}
+  m_LocalPosition: {x: 13.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7849,48 +7805,6 @@ MonoBehaviour:
       - m_Target: {fileID: 324751617}
         m_TargetAssemblyTypeName: Project.WorldShifter, Scripts
         m_MethodName: ShiftRight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 307496913}
-        m_TargetAssemblyTypeName: Project.OnTriggerEnterCallback, Scripts
-        m_MethodName: DisableCallback
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1206714413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206714409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dadfcb38affc85a49ad28fcf15aa6d7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isActive: 1
-  _targetTags:
-  - Player
-  _onTriggerExit2DEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1206714412}
-        m_TargetAssemblyTypeName: Project.OnTriggerEnterCallback, Scripts
-        m_MethodName: EnableCallback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
