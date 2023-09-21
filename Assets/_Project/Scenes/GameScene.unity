@@ -12127,6 +12127,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 450839720}
   - {fileID: 1771611080}
   - {fileID: 2071701788}
   - {fileID: 1450995302}
@@ -12909,6 +12910,127 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &450839719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 450839720}
+  - component: {fileID: 450839724}
+  - component: {fileID: 450839723}
+  - component: {fileID: 450839725}
+  m_Layer: 5
+  m_Name: Pause
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &450839720
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450839719}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 240051983}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 86, y: 101}
+  m_SizeDelta: {x: 30, y: 16}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &450839723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450839719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 821995414, guid: 772e65f49f2f94e70bf25ecef50cdda9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &450839724
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450839719}
+  m_CullTransparentMesh: 1
+--- !u!114 &450839725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450839719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 2
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 821995414, guid: 772e65f49f2f94e70bf25ecef50cdda9, type: 3}
+    m_PressedSprite: {fileID: 1448538170, guid: 772e65f49f2f94e70bf25ecef50cdda9, type: 3}
+    m_SelectedSprite: {fileID: 821995414, guid: 772e65f49f2f94e70bf25ecef50cdda9, type: 3}
+    m_DisabledSprite: {fileID: 821995414, guid: 772e65f49f2f94e70bf25ecef50cdda9, type: 3}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 450839723}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &494806914
 GameObject:
   m_ObjectHideFlags: 0
@@ -12942,7 +13064,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 240051983}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12999,9 +13121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff873bdfed9b4af8a1b0db72490f71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnButtonPress:
-    m_PersistentCalls:
-      m_Calls: []
   OnButtonPressDown:
     m_PersistentCalls:
       m_Calls:
@@ -13394,7 +13513,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 240051983}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13427,11 +13546,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff873bdfed9b4af8a1b0db72490f71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnButtonPress:
+  OnButtonPressDown:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 586735403}
-        m_TargetAssemblyTypeName: UIImageToggle, Assembly-CSharp
+        m_TargetAssemblyTypeName: Project.UIImageToggle, Scripts
         m_MethodName: SetActiveImage
         m_Mode: 1
         m_Arguments:
@@ -13442,35 +13561,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1771611081}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: PressDownButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2071701790}
-        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
-        m_MethodName: PressButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1771611081}
-        m_TargetAssemblyTypeName: InputButton, Scripts
-        m_MethodName: PressButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnButtonPressDown:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1771611081}
-        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_TargetAssemblyTypeName: Project.InputButton, Scripts
         m_MethodName: PressDownButton
         m_Mode: 1
         m_Arguments:
@@ -13535,7 +13639,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: -16, y: -16, z: -20, w: -22}
+  m_RaycastPadding: {x: -16, y: -16, z: -20, w: -17}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -13865,7 +13969,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &798214571
 GameObject:
@@ -14547,7 +14651,7 @@ Transform:
   - {fileID: 1899429597}
   - {fileID: 862901277}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &1103529144
 SortingGroup:
@@ -14560,6 +14664,63 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
+--- !u!1001 &1144122626
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 776649351003543111, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_Name
+      value: LoadSceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 776649351003543113, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c0f18e5ae163a4646930bd92723803a8, type: 3}
 --- !u!1 &1165576018
 GameObject:
   m_ObjectHideFlags: 0
@@ -14708,7 +14869,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 240051983}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14741,11 +14902,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff873bdfed9b4af8a1b0db72490f71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnButtonPress:
+  OnButtonPressDown:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1185731019}
-        m_TargetAssemblyTypeName: UIImageToggle, Assembly-CSharp
+        m_TargetAssemblyTypeName: Project.UIImageToggle, Scripts
         m_MethodName: SetActiveImage
         m_Mode: 1
         m_Arguments:
@@ -14756,35 +14917,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1771611081}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: PressDownButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1450995304}
-        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
-        m_MethodName: PressButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1771611081}
-        m_TargetAssemblyTypeName: InputButton, Scripts
-        m_MethodName: PressButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnButtonPressDown:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1771611081}
-        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_TargetAssemblyTypeName: Project.InputButton, Scripts
         m_MethodName: PressDownButton
         m_Mode: 1
         m_Arguments:
@@ -14849,7 +14995,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: -20, y: -16, z: -18, w: -22}
+  m_RaycastPadding: {x: -20, y: -16, z: -18, w: -17}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15451,7 +15597,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 240051983}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15484,11 +15630,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff873bdfed9b4af8a1b0db72490f71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnButtonPress:
+  OnButtonPressDown:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1450995303}
-        m_TargetAssemblyTypeName: UIImageToggle, Assembly-CSharp
+        m_TargetAssemblyTypeName: Project.UIImageToggle, Scripts
         m_MethodName: SetActiveImage
         m_Mode: 1
         m_Arguments:
@@ -15499,21 +15645,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: MoveRight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnButtonPressDown:
-    m_PersistentCalls:
-      m_Calls: []
   OnButtonRelease:
     m_PersistentCalls:
       m_Calls:
@@ -15629,7 +15760,7 @@ Transform:
   - {fileID: 42904014}
   - {fileID: 1084808593}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1567475262
 GameObject:
@@ -16051,7 +16182,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 240051983}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16070,24 +16201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff873bdfed9b4af8a1b0db72490f71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnButtonPress:
-    m_PersistentCalls:
-      m_Calls: []
   OnButtonPressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: TryJump
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1771611084}
         m_TargetAssemblyTypeName: UIImageToggle, Scripts
         m_MethodName: SetActiveImage
@@ -16282,7 +16398,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 240051983}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16315,11 +16431,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff873bdfed9b4af8a1b0db72490f71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnButtonPress:
+  OnButtonPressDown:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2071701789}
-        m_TargetAssemblyTypeName: UIImageToggle, Assembly-CSharp
+        m_TargetAssemblyTypeName: Project.UIImageToggle, Scripts
         m_MethodName: SetActiveImage
         m_Mode: 1
         m_Arguments:
@@ -16330,21 +16446,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: MoveLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnButtonPressDown:
-    m_PersistentCalls:
-      m_Calls: []
   OnButtonRelease:
     m_PersistentCalls:
       m_Calls:

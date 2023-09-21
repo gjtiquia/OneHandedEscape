@@ -8,16 +8,10 @@ namespace Project
 {
     public class InputButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        public UnityEvent OnButtonPress;
         public UnityEvent OnButtonPressDown;
         public UnityEvent OnButtonRelease;
 
         private bool _isPressed;
-
-        public void PressButton()
-        {
-            OnButtonPress?.Invoke();
-        }
 
         public void PressDownButton()
         {
@@ -43,15 +37,7 @@ namespace Project
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            ReleaseButton(); // Call once when pointer exits
-        }
-
-        private void Update()
-        {
-            if (_isPressed)
-            {
-                PressButton(); // Call on every frame that the pointer is inside
-            }
+            ReleaseButton();
         }
     }
 }
