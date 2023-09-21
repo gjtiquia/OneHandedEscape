@@ -1,26 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
-public class UIImageToggle : MonoBehaviour
+namespace Project
 {
-    [SerializeField] private Sprite _activeSprite;
-    [SerializeField] private Sprite _inactiveSprite;
-
-    private Image _image;
-
-    private void Awake()
+    [RequireComponent(typeof(Image))]
+    public class UIImageToggle : MonoBehaviour
     {
-        _image = GetComponent<Image>();
-    }
+        [SerializeField] private Sprite _activeSprite;
+        [SerializeField] private Sprite _inactiveSprite;
 
-    public void SetActiveImage()
-    {
-        _image.sprite = _activeSprite;
-    }
+        private Image _image;
 
-    public void SetInactiveImage()
-    {
-        _image.sprite = _inactiveSprite;
+        private void Awake()
+        {
+            _image = GetComponent<Image>();
+        }
+
+        public void SetActiveImage()
+        {
+            _image.sprite = _activeSprite;
+        }
+
+        public void SetInactiveImage()
+        {
+            _image.sprite = _inactiveSprite;
+        }
     }
 }
