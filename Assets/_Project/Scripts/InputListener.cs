@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityAssert = UnityEngine.Assertions.Assert;
 
 namespace Project
 {
@@ -30,6 +31,15 @@ namespace Project
         [SerializeField] private InputButton _rightUIButton;
         [SerializeField] private InputButton _upLeftUIButton;
         [SerializeField] private InputButton _upRightUIButton;
+
+        private void OnValidate()
+        {
+            UnityAssert.IsNotNull(_jumpUIButton);
+            UnityAssert.IsNotNull(_leftUIButton);
+            UnityAssert.IsNotNull(_rightUIButton);
+            UnityAssert.IsNotNull(_upLeftUIButton);
+            UnityAssert.IsNotNull(_upRightUIButton);
+        }
 
         private void Awake()
         {
