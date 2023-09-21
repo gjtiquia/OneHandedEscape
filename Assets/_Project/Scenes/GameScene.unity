@@ -15004,7 +15004,7 @@ GameObject:
   - component: {fileID: 1103529143}
   - component: {fileID: 1103529144}
   m_Layer: 0
-  m_Name: GameBorder
+  m_Name: FixedWorld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15801,7 +15801,7 @@ GameObject:
   - component: {fileID: 1285519323}
   - component: {fileID: 1285519322}
   m_Layer: 0
-  m_Name: frontSprite
+  m_Name: borderSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16116,7 +16116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1525725213}
   m_Layer: 0
-  m_Name: World
+  m_Name: DynamicWorld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16717,7 +16717,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1950888454}
   m_Layer: 0
-  m_Name: Colliders
+  m_Name: EdgeColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
