@@ -8,8 +8,7 @@ namespace Project
     {
         public void PressPlay()
         {
-            Debug.Log("Play Pressed!");
-            LoadSceneManager.LoadGameScene();
+            LoadSceneManager.LoadScene(SceneName.GameScene);
         }
     }
 }

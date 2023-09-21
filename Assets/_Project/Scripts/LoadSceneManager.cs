@@ -22,17 +22,19 @@ namespace Project
             _instance = this;
         }
 
-        public static void LoadGameScene()
+        // PUBLIC METHODS
+        public static void LoadScene(string sceneName)
         {
-            _instance.StartLoadGameScene();
+            _instance.StartToLoadScene(sceneName);
         }
 
-        private void StartLoadGameScene()
+        // PRIVATE METHODS
+        private void StartToLoadScene(string sceneName)
         {
-            StartCoroutine(LoadGameSceneCoroutine());
+            StartCoroutine(LoadSceneCoroutine(sceneName));
         }
 
-        private IEnumerator LoadGameSceneCoroutine()
+        private IEnumerator LoadSceneCoroutine(string sceneName)
         {
             string currentActiveSceneName = SceneManager.GetActiveScene().name;
 
@@ -41,7 +43,7 @@ namespace Project
 
             yield return LoadActiveAdditiveSceneCoroutine(SceneName.LoadingScene);
             yield return UnloadSceneCoroutine(currentActiveSceneName);
-            yield return LoadActiveAdditiveSceneCoroutine(SceneName.GameScene);
+            yield return LoadActiveAdditiveSceneCoroutine(sceneName);
             yield return UnloadSceneCoroutine(SceneName.LoadingScene);
         }
 
@@ -75,13 +77,6 @@ namespace Project
 
             if (_debug)
                 Debug.Log($"Unloaded {sceneName}!");
-        }
-
-        private static class SceneName
-        {
-            public const string GameInitScene = "GameInitScene";
-            public const string GameScene = "GameScene";
-            public const string LoadingScene = "LoadingScene";
         }
     }
 }
