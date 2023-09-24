@@ -33,16 +33,26 @@ namespace Project
             // Assumes is originally facing right
             Vector3 displayScale = _displayTransform.localScale;
 
-            if (_playerMovement.Velocity.x > 0)
+            if (IsPlayerFacingRight())
             {
                 displayScale.x = Mathf.Abs(displayScale.x);
             }
-            else if (_playerMovement.Velocity.x < 0)
+            else if (IsPlayerFacingLeft())
             {
                 displayScale.x = -1 * Mathf.Abs(displayScale.x);
             }
 
             _displayTransform.localScale = displayScale;
+        }
+
+        private bool IsPlayerFacingLeft()
+        {
+            return _playerMovement.Velocity.x < -1 * _horizontalSpeedThreshold;
+        }
+
+        private bool IsPlayerFacingRight()
+        {
+            return _playerMovement.Velocity.x > _horizontalSpeedThreshold;
         }
 
         private void UpdateAnimatorFloats()
