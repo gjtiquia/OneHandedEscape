@@ -12,6 +12,7 @@ namespace Project
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _displayTransform;
+        [SerializeField] private ParticleSystem _jumpParticles;
 
         private void OnValidate()
         {
@@ -20,12 +21,31 @@ namespace Project
             UnityAssert.IsNotNull(_playerMovement);
             UnityAssert.IsNotNull(_animator);
             UnityAssert.IsNotNull(_displayTransform);
+            UnityAssert.IsNotNull(_jumpParticles);
+        }
+
+        private void OnEnable()
+        {
+            _playerMovement.OnJumpStateChanged += OnJumpStateChanged;
+        }
+
+        private void OnDisable()
+        {
+            _playerMovement.OnJumpStateChanged -= OnJumpStateChanged;
         }
 
         private void Update()
         {
             UpdateDisplayDirection();
             UpdateAnimatorFloats();
+        }
+
+        private void OnJumpStateChanged(MovementState jumpState)
+        {
+            if (jumpState is JumpingUpState)
+            {
+                _jumpParticles.Play();
+            }
         }
 
         private void UpdateDisplayDirection()

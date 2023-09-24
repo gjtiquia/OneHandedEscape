@@ -8,6 +8,8 @@ namespace Project
     [RequireComponent(typeof(IOnGroundChecker))]
     public class PlayerMovement : MonoBehaviour
     {
+        public event Action<MovementState> OnJumpStateChanged;
+
         public PlayerMovementProperties Properties => _properties;
         public Rigidbody2D Rigidbody => _rigidbody;
         public Vector2 Velocity => _rigidbody.velocity;
@@ -97,6 +99,8 @@ namespace Project
             {
                 currentJumpState.OnExit(_fixedUpdateInput);
                 newJumpState.OnEnter(_fixedUpdateInput);
+
+                OnJumpStateChanged?.Invoke(newJumpState);
                 _jumpState = newJumpState;
             }
         }
