@@ -9,6 +9,7 @@ namespace Project
         [Header("References")]
         [SerializeField] private GameObject _mainPage;
         [SerializeField] private GameObject _pausePage;
+        [SerializeField] private GameObject _miniMapView;
 
         [Header("Events")]
         [SerializeField] private UnityEvent _onPausePressedEvent;
@@ -19,23 +20,29 @@ namespace Project
         {
             UnityAssert.IsNotNull(_mainPage);
             UnityAssert.IsNotNull(_pausePage);
+            UnityAssert.IsNotNull(_miniMapView);
         }
 
         private void Awake()
         {
             ShowMainPageOnly();
+            ToggleMinimapView(false);
         }
 
         // PUBLIC METHODS
         public void OnPausePressed()
         {
             ShowPausePageOnly();
+            ToggleMinimapView(true);
+
             _onPausePressedEvent?.Invoke();
         }
 
         public void OnResumePressed()
         {
             ShowMainPageOnly();
+            ToggleMinimapView(false);
+
             _onResumePressedEvent?.Invoke();
         }
 
@@ -55,6 +62,11 @@ namespace Project
         {
             _mainPage.SetActive(false);
             _pausePage.SetActive(true);
+        }
+
+        private void ToggleMinimapView(bool isActive)
+        {
+            _miniMapView.SetActive(isActive);
         }
     }
 }
