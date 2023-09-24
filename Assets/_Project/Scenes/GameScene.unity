@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onGroundOverlapBoxPointOffset: {x: 0, y: -0.5}
-  _onGroundOverlapBoxSize: {x: 0.8, y: 0.2}
+  _onGroundOverlapBoxSize: {x: 1, y: 0.2}
   _onGroundOverlapLayerMask:
     serializedVersion: 2
     m_Bits: 64
