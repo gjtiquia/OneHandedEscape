@@ -8,6 +8,7 @@ namespace Project
     {
         private void Awake()
         {
+            Time.timeScale = 1;
             Application.targetFrameRate = 120;
         }
 
