@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityAssert = UnityEngine.Assertions.Assert;
 
-namespace Project
+namespace Project.Core
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(IOnGroundChecker))]

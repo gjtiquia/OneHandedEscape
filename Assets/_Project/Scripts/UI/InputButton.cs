@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 // Reference: https://forum.unity.com/threads/how-do-i-detect-when-a-button-is-being-pressed-held-on-eventtype.352368/
-namespace Project
+namespace Project.UI
 {
     public class InputButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

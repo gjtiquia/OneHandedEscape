@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Project
+namespace Project.UI
 {
     [RequireComponent(typeof(Image))]
     public class UIImageToggle : MonoBehaviour

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Project
+namespace Project.Core
 {
     public class PlayerInput
     {

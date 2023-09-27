@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityAssert = UnityEngine.Assertions.Assert;
 
-namespace Project
+namespace Project.UI
 {
     public class GameViewController : MonoBehaviour
     {
