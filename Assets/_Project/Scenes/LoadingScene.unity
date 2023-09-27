@@ -480,6 +480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6742d07f3121a40bf5d9f4cd50ef1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeInDuration: 1
   _background: {fileID: 826594336}
   _loadingText: {fileID: 1406693187}
-  _dummyText: {fileID: 0}
