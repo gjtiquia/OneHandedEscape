@@ -54,10 +54,12 @@ namespace Project.Core
 
         public void OnFixedUpdate(float fixedDeltaTime)
         {
+            _fixedUpdateInput.UpdateTimers(fixedDeltaTime);
+
             UpdateJumpState(fixedDeltaTime);
             UpdateMovement(fixedDeltaTime);
 
-            _fixedUpdateInput.Clear();
+            _fixedUpdateInput.ClearInputs();
         }
 
         public void SetProperties(PlayerMovementProperties properties)
@@ -72,7 +74,7 @@ namespace Project.Core
 
         public void PressJump()
         {
-            _fixedUpdateInput.IsJumpPressed = true;
+            _fixedUpdateInput.IsJumpPressedDown = true;
         }
 
         public void ReleaseJump()
@@ -135,6 +137,7 @@ namespace Project.Core
         public float JumpForce = 0f;
         public float JumpCutMultiplier = 0f;
         public float CoyoteTime = 0f;
+        public float JumpBuffer = 0f;
     }
 
     public interface IOnGroundChecker

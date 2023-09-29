@@ -19,8 +19,11 @@ namespace Project
             get => m_isJumpPressed;
             set
             {
-                m_isJumpPressed = value;
-                OnJumpInputChanged?.Invoke(m_isJumpPressed);
+                if (m_isJumpPressed != value)
+                {
+                    m_isJumpPressed = value;
+                    OnJumpInputChanged?.Invoke(m_isJumpPressed);
+                }
             }
         }
         private static bool m_isJumpPressed;

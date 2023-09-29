@@ -4,22 +4,36 @@ namespace Project.Core
 {
     public class PlayerInput
     {
-        public bool IsJumpPressed;
+        public bool IsJumpPressedDown;
         public bool IsJumpReleased;
+
         public bool IsRightPressed;
         public bool IsLeftPressed;
 
+        public float JumpBufferTimer => _jumpBufferTimer;
+
+        private float _jumpBufferTimer;
+
         public PlayerInput()
         {
-            Clear();
+            ClearInputs();
+            _jumpBufferTimer = Mathf.Infinity; // Means that the last time jump was pressed is arbitratily long
         }
 
-        public void Clear()
+        public void ClearInputs()
         {
-            IsJumpPressed = false;
+            IsJumpPressedDown = false;
             IsJumpReleased = false;
             IsRightPressed = false;
             IsLeftPressed = false;
+        }
+
+        public void UpdateTimers(float deltaTime)
+        {
+            if (IsJumpPressedDown)
+                _jumpBufferTimer = 0;
+
+            _jumpBufferTimer += deltaTime;
         }
     }
 
@@ -58,10 +72,6 @@ namespace Project.Core
 
     public class GroundedState : MovementState
     {
-        /// <summary>
-        /// To prevent the player from constantly jumping when the jump button is held down.
-        /// </summary>
-        private bool _wasJumpReleasedFirst;
         private float _elapsedTimeOffGround;
 
         public GroundedState(PlayerMovement movement) : base(movement)
@@ -71,7 +81,6 @@ namespace Project.Core
 
         private void InitializeState()
         {
-            _wasJumpReleasedFirst = true;
             _elapsedTimeOffGround = 0;
         }
 
@@ -80,9 +89,6 @@ namespace Project.Core
             if (_debugLog) Debug.Log("Enter GroundedState");
 
             InitializeState();
-
-            if (input.IsJumpPressed)
-                _wasJumpReleasedFirst = false;
         }
 
         public override void OnExit(PlayerInput input)
@@ -94,11 +100,8 @@ namespace Project.Core
         {
             CalculateElapsedTimeOffGround(fixedDeltaTime);
 
-            if (_wasJumpReleasedFirst && input.IsJumpPressed && IsWithinCoyoteTime())
+            if (IsWithinCoyoteTime() && IsWithinJumpBuffer(input.JumpBufferTimer))
                 return _stateFactory.JumpingUpState;
-
-            if (input.IsJumpReleased)
-                _wasJumpReleasedFirst = true;
 
             return this;
         }
@@ -114,6 +117,11 @@ namespace Project.Core
         private bool IsWithinCoyoteTime()
         {
             return _elapsedTimeOffGround <= _properties.CoyoteTime;
+        }
+
+        private bool IsWithinJumpBuffer(float jumpBufferTime)
+        {
+            return jumpBufferTime <= _properties.JumpBuffer;
         }
     }
 

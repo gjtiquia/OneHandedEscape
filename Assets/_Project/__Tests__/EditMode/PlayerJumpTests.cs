@@ -61,25 +61,34 @@ namespace Project.Tests
         }
 
         [Test]
-        public void _04_DoesNotJumpAgainUntilReleaseJumpButton()
+        public void _04_DoesNotJumpAgainIfPassedJumpBuffer()
         {
+            // Should enter JumpingUpState
             _playerMovement.PressJump();
             RunFixedUpdate();
             Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0));
 
+            // Should enter FallingDownState
+            _rigidbody.velocity = Vector2.down;
+            _mockOnGroundChecker.SetIsOnGround(false);
+            RunFixedUpdate(500); // Mock passed over the jump buffer time //! Note that it may jump again if reach ground before jump buffer, dun make jumps too short
+            Assert.That(_playerMovement.Velocity.y, Is.LessThan(0));
+
             // Mock that the player is on the ground
+            // Should enter GroundedState
             _rigidbody.velocity = Vector2.zero;
             _mockOnGroundChecker.SetIsOnGround(true);
             RunFixedUpdate();
             Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0));
 
-            // Attempt to jump again (should not jump because not yet released)
-            _playerMovement.PressJump();
+            // Attempt to jump again while jump is still held (should not jump because passed jump buffer)
             RunFixedUpdate();
             Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0));
 
             _playerMovement.ReleaseJump();
             RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0));
+
             _playerMovement.PressJump();
             RunFixedUpdate();
             Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0)); // Jumped!
