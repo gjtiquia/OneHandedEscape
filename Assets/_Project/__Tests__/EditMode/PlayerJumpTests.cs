@@ -82,7 +82,7 @@ namespace Project.Tests
             RunFixedUpdate();
             _playerMovement.PressJump();
             RunFixedUpdate();
-            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0)); // Expect no change
+            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0)); // Jumped!
         }
 
         [Test]
@@ -120,6 +120,49 @@ namespace Project.Tests
             Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0));
 
             _playerMovement.PressJump();
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void _08_CanJumpIfWasPressedBeforeReachingGroundWithinJumpBuffer()
+        {
+            // Mock that player is on the ground
+            _mockOnGroundChecker.SetIsOnGround(true);
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0));
+
+            // Player should enter JumpingUpState
+            _playerMovement.PressJump();
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0));
+
+            // Must release before pressing jump again later
+            _playerMovement.ReleaseJump();
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0));
+
+            // Mock that the player is falling
+            // Player should enter FallingDownState
+            _rigidbody.velocity = Vector2.down;
+            _mockOnGroundChecker.SetIsOnGround(false);
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(-1));
+
+            // Still falling
+            _playerMovement.PressJump();
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(-1));
+
+            // Mock that the player is on the ground
+            // Player should enter GroundedState
+            _rigidbody.velocity = Vector2.zero;
+            _mockOnGroundChecker.SetIsOnGround(true);
+            RunFixedUpdate();
+            Assert.That(_playerMovement.Velocity.y, Is.EqualTo(0));
+
+            // Pressed jump within jump buffer, should jump
+            // Player should enter JumpingUpState
             RunFixedUpdate();
             Assert.That(_playerMovement.Velocity.y, Is.GreaterThan(0));
         }
